@@ -1,0 +1,19 @@
+{
+    "neo4j": {
+        "url": "neo4j+s://0bb2d64e.databases.neo4j.io",
+        "username": "neo4j",
+        "password": "HkQ83tzgRoUQNnCjxTG4CN0HUv-3l4UdMxcp5y_c-q8"
+    },
+    "llm_azure": {
+        "deployment_name": "gpt35turbo16k",
+        "openai_api_base": "https://openaiapiaz.openai.azure.com/",
+        "openai_api_version": "2023-07-01-preview",
+        "temperature": 0
+    },
+    "llm_openai": {
+        "model": "gpt-4-turbo"
+    },
+    "streamlit": {
+        "theme": "dark"
+    }
+}
