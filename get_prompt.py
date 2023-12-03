@@ -17,17 +17,26 @@ def generate_prompt_template():
         {schema}
  
         Examples:
-        # Find all trials studying a specific disease like Covid-19:
-        MATCH (t:Trial)-[:STUDIES]->(d:Disease {{diseaseName: "Covid-19"}})
-        RETURN t.title, t.phase, t.status
- 
-        # Find all drugs used in a specific trial:
-        MATCH (t:Trial {{trialID: "CT123456"}})-[:USES]->(d:Drug)
-        RETURN d.drugName, d.dosage, d.modeOfAdministration
- 
-        # Find all trials sponsored by a specific sponsor:
-        MATCH (t:Trial)-[:SPONSORED_BY]->(s:Sponsor {{sponsorName: "Sponsor Name Here"}})
-        RETURN t.title, t.phase, t.status
+            # Find all trials studying a specific disease like Malaria:
+            MATCH (t:Trial)-[:TARGETS]->(d:Disease {Name: "Malaria"})
+            RETURN t.TrialID, t.Title, t.Phase, t.Status
+
+            # Find all interventions used in a specific trial:
+            MATCH (t:Trial {TrialID: "NCT123456"})-[:USES]->(i:Intervention)
+            RETURN i.Name, i.Type
+
+            # List all the trials conducted in a specific country:
+            MATCH (t:Trial)-[:CONDUCTED_AT]->(l:Location {Country: "India"})
+            RETURN t.TrialID, t.Title, t.Status
+
+            # Find all trials and their locations:
+            MATCH (t:Trial)-[:CONDUCTED_AT]->(l:Location)
+            RETURN t.TrialID, t.Title, l.City, l.Country
+
+            # Find all trials that use a specific type of intervention, like a Drug:
+            MATCH (t:Trial)-[:USES]->(i:Intervention {Type: "Drug"})
+            RETURN t.TrialID, t.Title, i.Name
+
  
         The question is:
         {question}
